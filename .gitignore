@@ -3,3 +3,4 @@ ProjectFiles/.DS_Store
 .DS_Store
 .idea/
 .venv/
+update_requirements.sh
