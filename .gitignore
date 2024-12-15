@@ -4,3 +4,4 @@ ProjectFiles/.DS_Store
 .idea/
 .venv/
 update_requirements.sh
+.env
