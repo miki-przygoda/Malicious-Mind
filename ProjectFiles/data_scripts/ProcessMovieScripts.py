@@ -1,5 +1,5 @@
 # This script will remove the <b> and </b> tags from a selected movie script in the raw data
-# directory and save the cleaned script in the processed data directory.
+# directory and save the cleaned script in the preprocessed - using script data directory.
 # This is just basic preprcoessing to make the scripts more readable and easier to work with.
 # It's not going to perfeclty prepare a script for usability with a model.
 
@@ -11,7 +11,7 @@ def lines():
     print(60 * "-")
 
 raw_dir = '../data/raw/'
-processed_dir = '../data/processed/'
+processed_dir = '../data/preprocessed - using script/'
 
 # Get the list of movie scripts in the raw data directory
 movie_scripts = os.listdir(raw_dir)
@@ -71,13 +71,13 @@ with open(os.path.join(raw_dir, to_process), 'r') as file:  # Processing for the
         chunks.append(current_chunk.strip())
     print("Script cleaned successfully!")
 
-# Save the cleaned movie script in the processed data directory
+# Save the cleaned movie script in the preprocessed - using script data directory
 cleaned_script_path = os.path.join(processed_dir, to_process)
 with open(cleaned_script_path, 'w') as file:
     file.write('\n\n'.join(chunks))
     print("Processed script saved successfully!")
 
-# Save the processed script in a JSON file with scenes
+# Save the preprocessed - using script script in a JSON file with scenes
 scenes = []
 for idx, chunk in enumerate(chunks, start=1):
     scenes.append({
