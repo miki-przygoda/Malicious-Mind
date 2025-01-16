@@ -7,23 +7,38 @@ import os
 import re
 import json
 
+def lines():
+    print(60 * "-")
+
 raw_dir = '../data/raw/'
 processed_dir = '../data/processed/'
 
 # Get the list of movie scripts in the raw data directory
 movie_scripts = os.listdir(raw_dir)
 movie_scripts = [script for script in movie_scripts if script.endswith('.txt')] # Only the txt files
-
+print("Any input that isn't a number will exit the program.")
 i = 0
 for script in movie_scripts:
     i += 1
     print(f"{i}) {script}")
 
-# Select a movie script to process
-choice = int(input('Which Movie script would you like to process: '))
-to_process = movie_scripts[choice - 1]
-print(f"Processing {to_process}...")
-print()
+lines()
+
+while True:
+    try:
+    # Select a movie script to process
+        choice = input('Which Movie script would you like to process: ')
+        if not choice.isdigit():
+            print("Exiting...")
+            lines()
+            exit()
+        to_process = movie_scripts[int(choice) - 1]
+        print(f"Processing {to_process}...")
+        lines()
+        break
+    except ValueError and IndexError:
+        print("Invalid input.")
+        continue
 
 # Edit the selected movie script
 with open(os.path.join(raw_dir, to_process), 'r') as file:  # Processing for the txt file
@@ -39,6 +54,8 @@ with open(os.path.join(raw_dir, to_process), 'r') as file:  # Processing for the
     # Remove special characters
     script = re.sub(r'[^\x00-\x7F]+', ' ', script)  # Non-ASCII
     script = re.sub(r'[\\/]', ' ', script)  # Forward and backslashes
+    # Look for repeated words - All Caps
+
 
     # Split the script into chunks of approximately 5000 characters
     chunk_size = 5000  # Approximate number of characters
