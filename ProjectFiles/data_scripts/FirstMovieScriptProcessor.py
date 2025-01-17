@@ -47,7 +47,7 @@ def First():
         script = re.sub(r'\s+', ' ', script)
         script = re.sub(r'\n+', '\n', script)
         script = re.sub(r'\n', ' ', script)
-        # Remove special characters
+        script = re.sub(r'"', "'", script)
         # script = re.sub(r'[^\x00-\x7F]+', ' ', script)  # Non-ASCII
         script = script.lower()  # Convert all uppercase characters to lowercase
 
